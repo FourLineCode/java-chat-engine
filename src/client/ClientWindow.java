@@ -6,8 +6,11 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,11 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import java.awt.event.WindowFocusListener;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.text.DefaultCaret;
 
 public class ClientWindow {
 	
@@ -33,11 +34,12 @@ public class ClientWindow {
 
 	private JFrame frame;
 	private JTextField messageField;
+	private JTextField nameField;
 	private static JTextArea textArea = new JTextArea();
 	
 	private Client client;
 	private String clientName;
-	private JTextField nameField;
+	
 
 	// Main method
 	public static void main(String[] args) {
@@ -99,6 +101,10 @@ public class ClientWindow {
 		textArea.setBackground(Color.DARK_GRAY);
 		textArea.setForeground(Color.WHITE);
 		textArea.setFont(new Font("Sans Serif",Font.BOLD,20));
+		
+		// Scrolls to bottom when message overflow
+		DefaultCaret caret = (DefaultCaret)textArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		
 		//Scrollable window
 		JScrollPane scrollPane = new JScrollPane(textArea);

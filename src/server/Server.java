@@ -100,7 +100,7 @@ public class Server {
 			// Connecting user command
 			String name = message.substring(message.indexOf(":")+1);
 			
-			clients.add(new ClientInfo(name , clientId++, packet.getAddress(), packet.getPort()));
+			clients.add(new ClientInfo(name, clientId++, packet.getAddress(), packet.getPort()));
 			broadcast("\\cm:User " + name + " connected!");
 			
 			return true;
