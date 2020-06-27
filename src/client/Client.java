@@ -8,8 +8,8 @@ public class Client {
 	
 	private DatagramSocket socket;
 	private InetAddress address;
-	private int port;
 	private String name;
+	private int port;
 	
 	private boolean running;
 	

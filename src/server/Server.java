@@ -101,13 +101,22 @@ public class Server {
 			String name = message.substring(message.indexOf(":")+1);
 			
 			clients.add(new ClientInfo(name, clientId++, packet.getAddress(), packet.getPort()));
+			System.out.println("Client added on port " + packet.getPort());
 			broadcast("\\cm:User " + name + " connected!");
 			
 			return true;
 		} else if(message.startsWith("\\dis:")) {
 			// Disconnecting user command
-			String name = message.substring(message.indexOf(":")+1);
+			String name = null;
+			for(ClientInfo client : clients) {
+				if(client.port == packet.getPort()) {
+					name = client.getName();
+					break;
+				}
+			}
 			
+			clients.removeIf(client -> (client.port == packet.getPort()));
+			System.out.println("Client on port " + packet.getPort() + " removed ");
 			broadcast("\\dm:User " + name + " disconnected!");
 			
 			return true;

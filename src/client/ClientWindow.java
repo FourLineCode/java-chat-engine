@@ -86,7 +86,7 @@ public class ClientWindow {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				client.send("\\dis:" + clientName);
+				client.send("\\dis:");
 			}
 		});
 		
